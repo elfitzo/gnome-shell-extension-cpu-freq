@@ -3,6 +3,8 @@ gnome-shell-extension-cpu-freq
 
 View the actual frequency and change CPU frequency governor from gnome shell.
 
+The actual shown frequency is the average of all current frequencies.
+
 There is a bit of work to make it work though.
 
 cpufreq
@@ -14,15 +16,18 @@ Archlinux: https://wiki.archlinux.org/index.php/CPU_Frequency_Scaling
 
 You also need cpufreq-selector, which is usually in the gnome-applets package.
 
-cpupower is now also supported
-
 The best way to test you have these is to type in terminal:
-> which cpufreq-info  
-or
-> which cpupower  
 > which cpufreq-selector  
+and check if it exists.
 
-and check if they exist.
+Instead of cpufreq-info or cpu-power the current, minimum and maximum frequencies, aswell, as the current governor is read from sysfs, so check if these files are user-readable for your account, should there be any problems. 
+> /sys/bus/cpu/devices/cpu0/cpufreq/scaling_available_governors
+> /sys/bus/cpu/devices/cpu0/cpufreq/scaling_governor
+> /sys/bus/cpu/devices/cpu0/cpufreq/scaling_cur_freq
+> /sys/bus/cpu/devices/cpu0/cpufreq/cpuinfo_min_freq
+> /sys/bus/cpu/devices/cpu0/cpufreq/cpuinfo_max_freq
+> /sys/bus/cpu/devices/cpu0/cpufreq/scaling_available_frequencies
+
 
 
 Admin rights for changing the governor
@@ -61,3 +66,4 @@ Thanks
 https://github.com/LeCoyote  
 https://github.com/victornoel
 https://github.com/sonic414
+https://github.com/elfitzo
